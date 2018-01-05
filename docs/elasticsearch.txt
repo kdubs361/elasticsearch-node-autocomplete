@@ -1,0 +1,123 @@
+To search all
+-------------
+GET _search
+{
+  "query": {
+    "match_all": {}
+  }
+}
+
+
+TO delete an index
+------------------
+DELETE /products
+
+To add required formatting to JSON file
+---------------------------------------
+cat products5.json | jq -c '.[] | {"index": {"_index": "products", "_type": "product"}}, .' > products5-es.json
+
+To add with sku as ID field
+---------------------------
+cat products.json  | jq -c '.[] | {"index": {"_index": "products", "_type": "product", "_id": .sku}}, .' >> products-es.json
+
+To index file
+-------------
+
+https://www.elastic.co/guide/en/elasticsearch/guide/current/bulk.html
+
+curl -H'Content-Type: application/json' -XPOST 192.168.33.11:9200/_bulk?pretty=true --data-binary @products5-es.json
+
+Example:
+
+ubuntu@ubuntu-xenial:/vagrant/open-data-set$ curl -H'Content-Type: application/json' -XPOST 192.168.33.11:9200/_bulk?pretty=true --data-binary @products5-es.json
+{
+  "took" : 144,
+  "errors" : false,
+  "items" : [
+    {
+      "index" : {
+        "_index" : "products",
+        "_type" : "product",
+        "_id" : "0rnTrWABWyVx-uFTANCY",
+        "_version" : 1,
+        "result" : "created",
+        "_shards" : {
+          "total" : 2,
+          "successful" : 1,
+          "failed" : 0
+        },
+        "_seq_no" : 0,
+        "_primary_term" : 1,
+        "status" : 201
+      }
+    },
+    {
+      "index" : {
+        "_index" : "products",
+        "_type" : "product",
+        "_id" : "07nTrWABWyVx-uFTANCY",
+        "_version" : 1,
+        "result" : "created",
+        "_shards" : {
+          "total" : 2,
+          "successful" : 1,
+          "failed" : 0
+        },
+        "_seq_no" : 1,
+        "_primary_term" : 1,
+        "status" : 201
+      }
+    },
+    {
+      "index" : {
+        "_index" : "products",
+        "_type" : "product",
+        "_id" : "1LnTrWABWyVx-uFTANCY",
+        "_version" : 1,
+        "result" : "created",
+        "_shards" : {
+          "total" : 2,
+          "successful" : 1,
+          "failed" : 0
+        },
+        "_seq_no" : 2,
+        "_primary_term" : 1,
+        "status" : 201
+      }
+    },
+    {
+      "index" : {
+        "_index" : "products",
+        "_type" : "product",
+        "_id" : "1bnTrWABWyVx-uFTANCY",
+        "_version" : 1,
+        "result" : "created",
+        "_shards" : {
+          "total" : 2,
+          "successful" : 1,
+          "failed" : 0
+        },
+        "_seq_no" : 0,
+        "_primary_term" : 1,
+        "status" : 201
+      }
+    },
+    {
+      "index" : {
+        "_index" : "products",
+        "_type" : "product",
+        "_id" : "1rnTrWABWyVx-uFTANCY",
+        "_version" : 1,
+        "result" : "created",
+        "_shards" : {
+          "total" : 2,
+          "successful" : 1,
+          "failed" : 0
+        },
+        "_seq_no" : 3,
+        "_primary_term" : 1,
+        "status" : 201
+      }
+    }
+  ]
+}

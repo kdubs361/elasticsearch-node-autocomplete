@@ -1,0 +1,19 @@
+doctype html
+html
+    head
+        title= title
+        link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Raleway:300,400,700')
+        link(type='text/css', rel='stylesheet', href='/css/style.css')
+    body
+        h1.title Product Search
+        div.container
+            div.searchbox
+                form.searchform
+                    input.searchbar(type="text")
+                    input.value(type="hidden")
+                    button.submit(type="submit", disabled="disabled") Get Details
+                div.autocomplete
+            div.result
+
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+        script(src='/js/script.js')
