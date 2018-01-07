@@ -3,7 +3,7 @@ var path = require('path');
 //var logger = require('./logdna');
 var elasticsearch = require('./elasticsearch');
 
-const APP_PORT = 3000;
+const APP_PORT = 8080;
 
 var index = require('./routes/index');
 var suggest = require('./routes/suggest');
@@ -18,53 +18,53 @@ app.set('view engine', 'pug');
 // static folder setup
 app.use(express.static(path.join(__dirname, 'public')));
 
-elasticsearch.indexExists().then(
+// elasticsearch.indexExists().then(
 
-    //delete index if it exist
-    function(status){
-        if(status){
-            return elasticsearch.deleteIndex();
-        }
-    }
-).then(
-    function(){
+//     //delete index if it exist
+//     function(status){
+//         if(status){
+//             return elasticsearch.deleteIndex();
+//         }
+//     }
+// ).then(
+//     function(){
 
-        console.log('Index deleted');
+//         console.log('Index deleted');
 
-        //create our index
-        return elasticsearch.createIndex().then(
-            function(){
+//         //create our index
+//         return elasticsearch.createIndex().then(
+//             function(){
 
-                console.log('Index created');
+//                 console.log('Index created');
 
-                //Update our index with mappings
-                elasticsearch.indexMapping().then(
-                    function(){
-                        console.log('Index mapping has been updated');
+//                 //Update our index with mappings
+//                 elasticsearch.indexMapping().then(
+//                     function(){
+//                         console.log('Index mapping has been updated');
 
-                        //bulk add our dummy data in ./data/players.json
-                        elasticsearch.bulkAddDocument().then(
-                            function () {
-                                console.log('Dummy documents have been bulk imported');
-                            },
-                            function (err) {
-                                console.error('Could not import dummy documents', err);
-                            }
-                        )
-                    },
-                    function(err){
-                        console.error('Could not create index', err);
-                    }
+//                         //bulk add our dummy data in ./data/players.json
+//                         elasticsearch.bulkAddDocument().then(
+//                             function () {
+//                                 console.log('Dummy documents have been bulk imported');
+//                             },
+//                             function (err) {
+//                                 console.error('Could not import dummy documents', err);
+//                             }
+//                         )
+//                     },
+//                     function(err){
+//                         console.error('Could not create index', err);
+//                     }
 
-                )
-            },
-            function (err){
+//                 )
+//             },
+//             function (err){
 
-                console.error('Could not create index', err);
-            }
-        );
-    }
-);
+//                 console.error('Could not create index', err);
+//             }
+//         );
+//     }
+// );
 
 // create our app endpoints
 app.get('/', index);

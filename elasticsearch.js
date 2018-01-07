@@ -7,7 +7,7 @@ var elasticsearch = require('elasticsearch');
 env('.env');
 
 const es = elasticsearch.Client({
-    host: '192.168.33.10:9200'
+    host: '192.168.33.30:9200'
 });
 
 const INDEX_NAME = 'products';
