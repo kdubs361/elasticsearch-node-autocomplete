@@ -20,7 +20,8 @@ body{
     color: #ffffff;
     text-align: center;
     font-size: 6rem;
-    background-color:  #3F729B;
+    //background-color:  #3F729B;
+    background-color: #f4750c;
     text-transform: capitalize;
     font-weight: 400;
 }
