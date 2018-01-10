@@ -8,6 +8,7 @@ env('.env');
 
 const es = elasticsearch.Client({
     //host: '192.168.33.30:9200'
+    //host: 'https://elastic:<SOME_PASSWORD>T@f3243ca16623c6c4c64b885f69cb938b.us-central1.gcp.cloud.es.io:9243/'
     host: '104.198.210.90:9200'
 
 });
